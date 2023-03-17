@@ -1,0 +1,211 @@
+[gd_scene load_steps=21 format=3 uid="uid://2tuqhfq2t1q1"]
+
+[ext_resource type="Texture2D" uid="uid://bcvc7umscqdcg" path="res://assets/tile_item/24by24ModernRPGGuy.png" id="1_0atcp"]
+
+[sub_resource type="GDScript" id="GDScript_5obfq"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const speed = 0.6
+const movement = Vector2(0,0)
+const JUMP_VELOCITY = -400.0
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+
+func _input(event):
+	if event.is_action_released(\"kanan\"):
+		$boy.stop()
+	
+	if event.is_action_released(\"kiri\"):
+		$boy.stop()
+	
+	if event.is_action_released(\"Atas\"):
+		$boy.stop()
+	
+	if event.is_action_released(\"Bawah\"):
+		$boy.stop()
+		
+	#EVENT IF THE CONTROLLER IS MULTI
+
+func _physics_process(delta):
+	if (Input.is_action_pressed(\"kanan\")) : 
+		position.x += speed
+		$boy.play(\"walk-right\")
+	if (Input.is_action_pressed(\"kiri\")) :
+		position.x -= speed
+		$boy.play(\"walk-left\")
+	if (Input.is_action_pressed(\"Bawah\")) :
+		position.y += speed
+		$boy.play(\"walk-center\")
+	if (Input.is_action_pressed(\"Atas\")) :
+		position.y -= speed
+		$boy.play(\"walk-top\")
+	move_and_slide()
+	# Handle Jump.
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xy5uv"]
+size = Vector2(11, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e51bu"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfqac"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omuhq"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2wor"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pmc1"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(72, 72, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppmis"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(48, 72, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ivac"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(24, 72, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58k1y"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(0, 72, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pefbv"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71frs"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc6l4"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dodem"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckgax"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_om8ai"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg7i8"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul1nk"]
+atlas = ExtResource("1_0atcp")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6yko2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e51bu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfqac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omuhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2wor")
+}],
+"loop": true,
+"name": &"walk-center",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pmc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppmis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ivac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58k1y")
+}],
+"loop": true,
+"name": &"walk-left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pefbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71frs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tc6l4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dodem")
+}],
+"loop": true,
+"name": &"walk-right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckgax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_om8ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kg7i8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul1nk")
+}],
+"loop": true,
+"name": &"walk-top",
+"speed": 5.0
+}]
+
+[node name="character" type="Node2D"]
+texture_filter = 3
+texture_repeat = 2
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = SubResource("GDScript_5obfq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_xy5uv")
+
+[node name="boy" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 3
+texture_repeat = 2
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(0.930176, 0.803711)
+sprite_frames = SubResource("SpriteFrames_6yko2")
+animation = &"walk-center"
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+ignore_rotation = false
+zoom = Vector2(3, 3)

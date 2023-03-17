@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdyrmfncd7i7v"]
+
+[ext_resource type="Texture2D" uid="uid://mqsdbq4i5rm2" path="res://assets/tile_item/chair.png" id="1_6tkmm"]
+[ext_resource type="Texture2D" uid="uid://disc0lug2p44n" path="res://assets/tile_item/table.png" id="2_nggvc"]
+[ext_resource type="Texture2D" uid="uid://8kpphytl26of" path="res://assets/tile_item/monitor.png" id="3_dyv4k"]
+[ext_resource type="Texture2D" uid="uid://cildd8w7gvf7b" path="res://assets/tile_item/pc.png" id="4_suucc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yx0o6"]
+radius = 24.5051
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cecyy"]
+size = Vector2(12, 12)
+
+[node name="monitor-solar" type="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -3.5)
+shape = SubResource("CircleShape2D_yx0o6")
+
+[node name="Chair" type="Sprite2D" parent="."]
+position = Vector2(0, 18)
+texture = ExtResource("1_6tkmm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_cecyy")
+
+[node name="Table" type="Sprite2D" parent="CollisionShape2D2"]
+position = Vector2(0, -17)
+texture = ExtResource("2_nggvc")
+
+[node name="Monitor" type="Sprite2D" parent="CollisionShape2D2"]
+position = Vector2(6, -27)
+texture = ExtResource("3_dyv4k")
+
+[node name="Pc" type="Sprite2D" parent="CollisionShape2D2"]
+position = Vector2(-10, -27)
+texture = ExtResource("4_suucc")
