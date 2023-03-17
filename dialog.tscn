@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cholu7yoorrys"]
+
+[ext_resource type="Texture2D" uid="uid://swotvt0l1jcx" path="res://assets/tile_item/arc-dialogue-re.png" id="1_mdu6m"]
+
+[node name="dialog" type="Node2D"]
+
+[node name="Arc-dialogue-re" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+texture = ExtResource("1_mdu6m")

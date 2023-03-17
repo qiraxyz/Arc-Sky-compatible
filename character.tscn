@@ -42,7 +42,7 @@ func _physics_process(delta):
 	if (Input.is_action_pressed(\"Atas\")) :
 		position.y -= speed
 		$boy.play(\"walk-top\")
-	move_and_slide()
+	move_and_collide(movement)
 	# Handle Jump.
 
 	# Get the input direction and handle the movement/deceleration.

@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://dbp7aplpo4gi2"]
+
+[ext_resource type="Texture2D" uid="uid://dndkoht81bwc2" path="res://assets/tile_item/pcsprite.png" id="1_ryor0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oi12f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j62yu"]
+size = Vector2(12, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc70x"]
+size = Vector2(31, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwi0d"]
+atlas = ExtResource("1_ryor0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rotuq"]
+atlas = ExtResource("1_ryor0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sihcj"]
+atlas = ExtResource("1_ryor0")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a04l6"]
+atlas = ExtResource("1_ryor0")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onmqw"]
+atlas = ExtResource("1_ryor0")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ivo03"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwi0d")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rotuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sihcj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a04l6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onmqw")
+}],
+"loop": true,
+"name": &"on",
+"speed": 1.0
+}]
+
+[node name="monitor" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_oi12f")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3, 5.5)
+shape = SubResource("RectangleShape2D_j62yu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, -6.5)
+shape = SubResource("RectangleShape2D_fc70x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+sprite_frames = SubResource("SpriteFrames_ivo03")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0191003

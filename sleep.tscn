@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://bi2yxovarmerc"]
+
+[ext_resource type="Texture2D" uid="uid://clqcqln5y4g8c" path="res://assets/tile_item/sleep.png" id="1_pbg8d"]
+
+[sub_resource type="GDScript" id="GDScript_rx5gx"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_body_entered(body):
+	$AnimatedSprite2D.play('sleep')
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fv2l"]
+atlas = ExtResource("1_pbg8d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71a4y"]
+atlas = ExtResource("1_pbg8d")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sirnm"]
+atlas = ExtResource("1_pbg8d")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68rvb"]
+atlas = ExtResource("1_pbg8d")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8d60p"]
+atlas = ExtResource("1_pbg8d")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ie3q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fv2l")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71a4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sirnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68rvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8d60p")
+}],
+"loop": true,
+"name": &"sleep",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acsai"]
+size = Vector2(16, 31)
+
+[node name="sleep" type="Area2D"]
+gravity_space_override = 3
+script = SubResource("GDScript_rx5gx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0ie3q")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.353539
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_acsai")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
